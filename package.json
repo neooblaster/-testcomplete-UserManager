@@ -1,0 +1,26 @@
+{
+    "name": "@testcomplete/usermanager",
+    "version": "0.2.0",
+    "description": "A library that pick a credentials group session from a catalogue for a testing execution",
+    "main": "Keyboard.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "TestComplete",
+        "NodeJS",
+        "Automatition",
+        "User",
+        "Interface",
+        "Library"
+    ],
+    "author": "Nicolas DUPRE",
+    "license": "ISC",
+    "dependencies": {
+        "@testcomplete/filesystemutil": "^0.1.1",
+        "@testcomplete/lockmanager": "^0.3.0",
+        "@testcomplete/loggerutil": "^0.1.1",
+        "ifopt": "^1.6.1",
+        "sjcl": "^1.0.8"
+    }
+}
