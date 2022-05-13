@@ -176,6 +176,9 @@ UserMgr.catalogue().credential('fiori').add();
 
 // Creation of credential system 'supplier' with no common settings
 UserMgr.catalogue().credential('supplier').add();
+
+// Save modification
+UserMgr.catalogue().save();
 ````
 
 **Note**: Considering you have a function to manage credential system.
@@ -234,6 +237,9 @@ UserMgr.catalogue().credential('fiori').user('TNR_USER_03').setPassword('TnRFlP0
 
 // Handling Users for 'supplier'
 UserMgr.catalogue().credential('supplier').user('TNR_TECH_USER').setPassword('TnRSupplierLimited.');
+
+// Save modification
+UserMgr.catalogue().save();
 ````
 
 The result of the catalogue next to the execution :
@@ -285,6 +291,9 @@ We will create three group session allowing three concurrent test execution.
 UserMgr.catalogue().session('GROUP_SESSION_01');
 UserMgr.catalogue().session('GROUP_SESSION_02');
 UserMgr.catalogue().session('GROUP_SESSION_03');
+
+// Save modification
+UserMgr.catalogue().save();
 ````
 
 The result of the catalogue next to the execution :
@@ -358,6 +367,13 @@ UserMgr.catalogue().session('GROUP_SESSION_03').credential('fiori').user('TNR_US
 UserMgr.catalogue().session('GROUP_SESSION_01').credential('supplier').user('TNR_TECH_USER').set();
 UserMgr.catalogue().session('GROUP_SESSION_02').credential('supplier').user('TNR_TECH_USER').set();
 UserMgr.catalogue().session('GROUP_SESSION_03').credential('supplier').user('TNR_TECH_USER').set();
+````
+
+* Save your modifications
+
+````javascript
+// Save modification
+UserMgr.catalogue().save();
 ````
 
 
