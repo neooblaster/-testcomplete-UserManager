@@ -1,6 +1,6 @@
 {
     "name": "@testcomplete/usermanager",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "A library that pick a credentials group session from a catalogue for a testing execution",
     "main": "UserManager.js",
     "bin": {
