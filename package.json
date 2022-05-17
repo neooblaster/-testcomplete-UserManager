@@ -2,7 +2,10 @@
     "name": "@testcomplete/usermanager",
     "version": "0.2.0",
     "description": "A library that pick a credentials group session from a catalogue for a testing execution",
-    "main": "Keyboard.js",
+    "main": "UserManager.js",
+    "bin": {
+        "usercataloguemanager": "UserCatalogueManager.js"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -17,10 +20,19 @@
     "author": "Nicolas DUPRE",
     "license": "ISC",
     "dependencies": {
-        "@testcomplete/filesystemutil": "^0.1.1",
-        "@testcomplete/lockmanager": "^0.3.0",
+        "@testcomplete/filesystemutil": "^0.1.2",
+        "@testcomplete/lockmanager": "^0.3.2",
         "@testcomplete/loggerutil": "^0.1.1",
         "ifopt": "^1.6.1",
         "sjcl": "^1.0.8"
-    }
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/neooblaster/-testcomplete-UserManager*.git"
+    },
+    "bugs": {
+        "url": "https://github.com/neooblaster/-testcomplete-UserManager*/issues"
+    },
+    "homepage": "https://github.com/neooblaster/-testcomplete-UserManager*#readme"
 }

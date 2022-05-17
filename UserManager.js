@@ -1,8 +1,9 @@
 ﻿// Check for NodeJS. If NodeJS, require need relative path
-let sPrePath = typeof process !== 'undefined' ? './' : '';
+let sPrePath     = typeof process !== 'undefined' ? '@testcomplete/' : '';
+let sPrePathRel  = typeof process !== 'undefined' ? './' : '';
 
-let sjcl        = require(`${sPrePath}sjcl`);
-let base64      = require(`${sPrePath}Base64`);
+let sjcl        = require(`sjcl`);
+let base64      = require(`${sPrePathRel}Base64`);
 let fs          = require(`${sPrePath}FileSystemUtil`);
 let logger      = require(`${sPrePath}LoggerUtil`);
 let lockManager = require(`${sPrePath}LockManager`);

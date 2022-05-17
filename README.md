@@ -21,23 +21,23 @@
 
 [](BeginSummary)
 * [Summary](#summary)
-* [UserManager Setup for TestComplete](#usermanager%20setup%20for%20testcomplete)
-* [Get Started](#get%20started)
-    * [Creation of the catalogue file](#creation%20of%20the%20catalogue%20file)
-    * [Setting Up credentials](#setting%20up%20credentials)
-        * [First Step - Identifying & Setup of tested system](#first%20step%20-%20identifying%20&%20setup%20of%20tested%20system)
-        * [Second Step - Register users for each credential system](#second%20step%20-%20register%20users%20for%20each%20credential%20system)
-        * [Third Step - Create Group Session](#third%20step%20-%20create%20group%20session)
-        * [Fourth Step - Assign user to Group Session](#fourth%20step%20-%20assign%20user%20to%20group%20session)
-    * [Consuming credentials.](#consuming%20credentials.)
-        * [Retrieve Username & Password](#retrieve%20username%20&%20password)
-* [Command Line Interface (CLI)](#command%20line%20interface%20(cli))
-    * [Catalogue file initialization](#catalogue%20file%20initialization)
-    * [Setting up credential systems](#setting%20up%20credential%20systems)
-    * [Setting up users & password](#setting%20up%20users%20&%20password)
-    * [Setting up user group session](#setting%20up%20user%20group%20session)
-    * [Assign users to group session](#assign%20users%20to%20group%20session)
-* [Detailed Documentation](#detailed%20documentation)
+* [UserManager Setup for TestComplete](#usermanager-setup-for-testcomplete)
+* [Get Started](#get-started)
+    * [Creation of the catalogue file](#creation-of-the-catalogue-file)
+    * [Setting Up credentials](#setting-up-credentials)
+        * [First Step - Identifying & Setup of tested system](#first-step-identifying-&-setup-of-tested-system)
+        * [Second Step - Register users for each credential system](#second-step-register-users-for-each-credential-system)
+        * [Third Step - Create Group Session](#third-step-create-group-session)
+        * [Fourth Step - Assign user to Group Session](#fourth-step-assign-user-to-group-session)
+    * [Consuming credentials.](#consuming-credentials.)
+        * [Retrieve Username & Password](#retrieve-username-&-password)
+* [Command Line Interface (CLI)](#command-line-interface-cli)
+    * [Catalogue file initialization](#catalogue-file-initialization)
+    * [Setting up credential systems](#setting-up-credential-systems)
+    * [Setting up users & password](#setting-up-users-&-password)
+    * [Setting up user group session](#setting-up-user-group-session)
+    * [Assign users to group session](#assign-users-to-group-session)
+* [Detailed Documentation](#detailed-documentation)
 [](EndSummary)
 
 
@@ -527,7 +527,8 @@ UserMgr.saplogon().signed().on();
 ````
 
 
-Please find below a code sample 
+Please find below a code sample how to implement user group session release
+which also works when an error occurs in TestComplete.
 
 ````javascript
 let UserManager = require('UserManager');
@@ -596,7 +597,7 @@ I will suppose that **NodeJs** is installed because, we use
 The CLI file is ``UserCatalogueManager.js`` which is available in the root 
 folder next to ``UserManager.js``
 
-You can place the screen anywhere on your computer until you update 
+You can place the script file anywhere on your computer until you update 
 the line ``59`` which is pointing to the main library **UserManager.js**
 
 ````javascript
