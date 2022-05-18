@@ -2,7 +2,7 @@
 
 > A library that pick a credentials group session from a catalogue for a testing execution.
 
-* **Version** : ``v0.3.0``
+* **Version** : ``v0.3.1``
 * **Compatibility** : **TestComplete** - **NodeJS** (Partial)
 * **Script** : ``./node_modules/@testcomplete/usermanager/UserManager.js``
 * **Dependencies** :
