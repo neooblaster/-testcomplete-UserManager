@@ -3,6 +3,8 @@
 > A library that pick a credentials group session from a catalogue for a testing execution.
 
 * **Version** : ``v0.3.0``
+* **Compatibility** : **TestComplete** - **NodeJS** (Partial)
+* **Script** : ``./node_modules/@testcomplete/usermanager/UserManager.js``
 * **Dependencies** :
     * ``sjcl`` : [sjcl](https://www.npmjs.com/package/sjcl)
         * ``./node_modules/sjcl/sjcl.js``
@@ -38,6 +40,31 @@
     * [Setting up user group session](#setting-up-user-group-session)
     * [Assign users to group session](#assign-users-to-group-session)
 * [Detailed Documentation](#detailed-documentation)
+    * [Setting lock files location ``setLockFolder()``](#setting-lock-files-location-setlockfolder)
+    * [Setting user catalogue file location ``setUserCatalogueLocation()``](#setting-user-catalogue-file-location-setusercataloguelocation)
+    * [User Catalogue Manager ``catalogue()``](#user-catalogue-manager-catalogue)
+        * [Session Manager ``.session()``](#session-manager-.session)
+            * [Adding new user group session ``.add()``](#adding-new-user-group-session-.add)
+            * [Removing user group session ``.delete()``](#removing-user-group-session-.delete)
+            * [Renaming user group session ``.rename()``](#renaming-user-group-session-.rename)
+            * [Renaming user group session ``.credential()``](#renaming-user-group-session-.credential)
+                * [Assign a user ``.user()``](#assign-a-user-.user)
+        * [Credential System Manager ``.credential()``](#credential-system-manager-.credential)
+            * [Registering a new credential system ``.add()``](#registering-a-new-credential-system-.add)
+            * [Removing a credential system ``.delete()``](#removing-a-credential-system-.delete)
+            * [Renaming a credential system ``.rename()``](#renaming-a-credential-system-.rename)
+            * [Maintaining credential system user ``.user()``](#maintaining-credential-system-user-.user)
+        * [Commit your changes ``.save()``](#commit-your-changes-.save)
+    * [Is the user group session picking has encounter an error ``hasError()``](#is-the-user-group-session-picking-has-encounter-an-error-haserror)
+    * [Initialize a brand new catalogue file ``initializeCatalogue``](#initialize-a-brand-new-catalogue-file-initializecatalogue)
+    * [Pick a user group session to perform connection ``getUserSessionGroup``](#pick-a-user-group-session-to-perform-connection-getusersessiongroup)
+    * [Dynamic method named with the credential system name ``systemUser()``](#dynamic-method-named-with-the-credential-system-name-systemuser)
+        * [Get user name ``.user()``](#get-user-name-.user)
+        * [Get user password ``.password()``](#get-user-password-.password)
+        * [Set signed flag ``.signed()``](#set-signed-flag-.signed)
+        * [Get signed flag ``.isSigned()``](#get-signed-flag-.issigned)
+        * [Get credential system global setting ``<credSystemProperty>``](#get-credential-system-global-setting-%3Ccredsystemproperty%3E)
+    * [Release picked user group session ``releaseUserSessionGroup()``](#release-picked-user-group-session-releaseusersessiongroup)
 [](EndSummary)
 
 
@@ -143,17 +170,17 @@ let UserMgr = new UserManager().setUserCatalogueLocation('S:/TC_DATA/Technical/U
 The main purpose of this library is to get a **set** of credential
 user for all different systems you will test during the execution.
 
-If your tested systems accept multiple connexion of the same user,
+If your tested systems accept multiple connection of the same user,
 you not will probably need to implement the **UserManager** library.
 
 If at least one tested system has licence control done on sign on and prevent
-multiple connexions, you will resolve the situation by letting **UserManager**
+multiple connections, you will resolve the situation by letting **UserManager**
 picking a user group session from the catalogue.
 
 Please considering your test works with 3 applications :
 
-* The desktop application **SAPLOGON** where multiple connexion are not allowed
-* The web application **SAP Fiori Launchpad** where multiple connexion are permitted
+* The desktop application **SAPLOGON** where multiple connection are not allowed
+* The web application **SAP Fiori Launchpad** where multiple connection are permitted
 * A customer application available on the web **Supplier Portal** 
 
 Here we have 3 different systems each with it own user. I call them
@@ -484,13 +511,13 @@ that returning a object with these method :
 - ``user()`` which returns the credential system user id.
 - ``password()`` which returns the decrypt password of the credential system.
 - ``signed()``  which allows handling of a flag indicating if the user is currently signed or not :
-    -  ``on()`` which turning flag to `true` indicating connexion is up. 
-    -  ``off()`` which turning flag to `false` indicating connexion has turned off.
+    -  ``on()`` which turning flag to `true` indicating connection is up. 
+    -  ``off()`` which turning flag to `false` indicating connection has turned off.
 - ``isSigned()`` returning `true` if you turn flag to signed or `false`
 - ``<property>`` all global properties set in `common` for the <span style="color: red;">**credential system**</span> are accessible by using its name.
     
 
-So considering the following script which perform **SAP Logon** connexion :
+So considering the following script which perform **SAP Logon** connection :
 
 ````javascript
 // Perform SAP Connexion
@@ -532,7 +559,7 @@ which also works when an error occurs in TestComplete.
 
 ````javascript
 let UserManager = require('UserManager');
-let Deconnexion_gui = require('Deconnexion_gui');
+let Deconnection_gui = require('Deconnection_gui');
 
 /**
  * Release locks file set for the run execution.
@@ -549,8 +576,8 @@ function ReleaseUserSessionGroup($bNextToError = false) {
 
     // If user are used, perfrom signoff
     if (!oUserMgr.hasError() && oUserMgr.saplogon().isSigned()) {
-        oUserMgr.logger().warning('Closing SAPLogon connexion to freed user.');
-        Deconnexion_gui();
+        oUserMgr.logger().warning('Closing SAPLogon connection to freed user.');
+        Deconnection_gui();
     }
     //We checked if the Browser is still on
     let nTimeout = Options.Run.Timeout;
@@ -752,34 +779,470 @@ which user must be used :
 
 ## Detailed Documentation
 
-* ``setLockFolderLocation``
-* ``setUserCatalogueLocation``
-* ``catalogue``
-    * ``session``
-        * ``add``
-        * ``delete``
-        * ``rename``
-        * ``credential``
-            * ``user``
-                * ``set``
-                * ``setPassword``
-    * ``credential``
-        * ``add``
-        * ``delete``
-        * ``rename``
-        * ``user``
-            * ``setPassword``
-    * ``save``
-* ``hasError``
-* ``<dynamic>`` :
-    * ``user``
-    * ``password``
-    * ``signed``
-        * ``on``
-        * ``off``
-    * ``isSigned``
-    * ``<dynamic>``
-* ``initializeCatalogue``
-* ``getUserSessionGroup``
-* ``releaseUserSessionGroup``
+Please consider that the following instance has been set under variable
+``UserMgr`` :
 
+````javascript
+const UserManager = require('UserManager');
+
+let UserMgr = new UserManager();
+````
+
+
+### Setting lock files location ``setLockFolder()``
+
+> UserManager setLockFolderLocation( String $sLockFolderLocation )
+
+* **Compatibility** : **TestComplete** + **NodeJS**
+
+**UserManager** use the lock file concept to indicates a user group 
+session is currently used by a test execution.
+
+To be functional as expected, you have to specified in the setup phase
+the location thank to this method where the argument is the path
+to the folder. It can be relative, but it is preferred to use absolute path.
+
+````javascript
+UserMgr.setLockFolderLocation('S:/TC_DATA/Technical/User/Locks');
+````
+
+
+
+### Setting user catalogue file location ``setUserCatalogueLocation()``
+
+> UserManager setUserCatalogueLocation( String $sUserCatalogueLocation )
+
+* **Compatibility** : **TestComplete** + **NodeJS**
+
+Users data are store in a file called **catalogue**.
+By default, the file name is ``catalogue.json``, but it can be different.
+
+To allow the library picks a user from the catalogue,
+you have first to set the path to this file with this method.
+
+````javascript
+UserMgr.setUserCatalogueLocation('S:/TC_DATA/Technical/User/catalogue.json');
+````
+
+
+
+### User Catalogue Manager ``catalogue()``
+
+> Object catalogue( )
+
+* **Compatibility** : **TestComplete** + **NodeJS**
+
+To prevent manual maintenance of catalogue file,
+the library comes with own methods to maintain it by code,
+offering you the ability to develop your own interface.
+
+
+#### Session Manager ``.session()``
+
+> Object session( [ String $sSession = '' ] )
+
+The library picks a user group session.
+A user group session regroups in one session a user set for each registered system.
+
+It accepts optionally the user group session name.
+If the user group session name does not exists in the catalogue,
+it will be created immediately before returning management methods.
+
+In the maintenance of an existing user group session,
+the argument ``$sSession`` must be filled.
+
+
+##### Adding new user group session ``.add()``
+
+> String add( String $sSession )
+
+This method registers in the catalogue a new user group session.
+The library will automatically assigns a dummy (`<setUser>`) user by credential system
+to the new user group session.
+
+`````javascript
+UserMgr.catalogue().session().add('USER_GROUP_01');
+`````
+
+
+
+##### Removing user group session ``.delete()``
+
+> UserManager delete( )
+
+This method removes the user group session from the catalogue.
+The session name must be passed in ``.session( $sSession )``
+because we are currently maintaining an existing session.
+
+`````javascript
+UserMgr.catalogue().session('USER_GROUP_01').delete();
+`````
+
+
+
+##### Renaming user group session ``.rename()``
+
+**Not implemented yet**
+
+`````javascript
+UserMgr.catalogue().session('USER_GROUP_01').rename();
+`````
+
+
+
+##### Renaming user group session ``.credential()``
+
+> Object credential( String $sCredential )
+
+As explained previously, for a user group session, you will 
+find all registered credential system set with a dummy user.
+
+To specify which user to user for the specific credential system
+for the user group session under management, we have to specify
+the credential system name.
+
+To do that, we have to pass the credential system name
+in the option ``$sCredential``
+
+
+
+###### Assign a user ``.user()``
+
+> Object user( String $sUser )
+
+This method let you to assign the specified user in the option
+to specified credential system ``$sCredential`` for specified user group
+session ``$sSession``.
+
+To assign the user, you have to call method ``.set( $sPassword = null)``.
+The method ``.set()`` accepts an optional argument which is the
+the password to set/update for the credential system/user.
+
+````javascript
+// Simply Assign User
+UserMgr.catalogue().session('USER_GROUP_01').credential('saplogon').user('TNR_USER_01').set();
+````
+
+````javascript
+// Assign User and Set/Update it password
+UserMgr.catalogue().session('USER_GROUP_01').credential('saplogon').user('TNR_USER_01').set('1235*');
+````
+
+With the method ``password( $sPassword = null )``, you can also
+set/update the user password without assigning it to the user group session.
+It's simply offer an another way to manage password.
+
+````javascript
+// Maintain user password (only)
+UserMgr.catalogue().session('USER_GROUP_01').credential('saplogon').user('TNR_USER_01').password('1235*');
+````
+
+
+
+
+
+
+#### Credential System Manager ``.credential()``
+
+> Object credential( [String $sCredential = '' ] )
+
+As it's possible to test many systems in one test execution with **TestComplete**,
+we need to registers all of them.
+A user group session expected an assigned user by credential system.
+
+This method allow you to maintain the credential system.
+To maintain a credential system, in any case, you must fill
+the ``$sCredential`` argument.
+
+
+##### Registering a new credential system ``.add()``
+
+> Void add( [ Object $oSetting = {} [, String $sUser = '<setUser>' [, String $sPassword = '' ] ] ] )
+
+Call without any parameter, the credential system
+is registered in the catalogue with an initial user ``<setUser>``.
+
+````javascript
+// Registering a new credential system
+UserMgr.catalogue().credential('saplogon').add();
+````
+
+You can set global settings for the credential system
+by passing a couple of property/value standing for a setting.
+
+````javascript
+// Registering a new credential system with global setting
+UserMgr.catalogue().credential('saplogon').add({
+    system: 'XOM',
+    client: '120',
+    language: 'FR'
+});
+````
+
+Finally, you can immediately specify the initial user with it password.
+
+````javascript
+// Registering a new credential system with global setting,
+// with at least this user and password
+UserMgr.catalogue().credential('saplogon').add({
+    system: 'XOM',
+    client: '120',
+    language: 'FR'
+}, 'TNR_USER_01', '1234*');
+````
+
+
+
+##### Removing a credential system ``.delete()``
+
+> Void delete( )
+
+This method removes the credential system from the catalogue.
+
+````javascript
+// Remove the credential system
+UserMgr.catalogue().credential('saplogon').delete();
+````
+
+
+
+##### Renaming a credential system ``.rename()``
+
+**Not implemented yet**
+
+`````javascript
+UserMgr.catalogue().credential('saplogon').rename();
+`````
+
+
+
+##### Maintaining credential system user ``.user()``
+
+> Object user( [ String $sUser = '' ] )
+
+This method let you to manage all users registered for the specified
+credential system.
+
+To manage a user for the cred. system, you must
+pass the user name in the argument ``$sUser``.
+
+To add a new user, you have to use the method ``.setPassword( $sPassword = '')``.
+This method registers the user with specified password
+
+````javascript
+UserMgr.catalogue().credential('saplogon').user('TNR_USER_01').setPassword('1234*');
+````
+
+
+
+
+
+
+#### Commit your changes ``.save()``
+
+> Void save( )
+
+* **Compatibility** : **TestComplete** + **NodeJS**
+
+Ay modification done on the catalogue must be committed with method
+``save()``.
+This method will update the catalogue file.
+You can apply your change at any time.
+
+````javascript
+// Save modification
+UserMgr.catalogue().save();
+````
+
+
+
+
+### Is the user group session picking has encounter an error ``hasError()``
+
+> Boolean hasError( )
+
+* **Compatibility** : **TestComplete** only
+
+This method let you to check if something happens wrong during
+the user group session picking.
+
+If an error occurs, the library log an error message and set an internal
+flag as ``true``.
+
+You can check if something happens wrong thanks to this method :
+
+````javascript
+// If library was able to get user group session
+// and a connection is opened on saplogon.
+if(!UserMgr.hasError() && UserMgr.saplogon().isSigned()){
+    // Stopping processing :
+    // - Perform disconnection from SAP before stopping test execution.
+}
+````
+
+
+
+### Initialize a brand new catalogue file ``initializeCatalogue``
+
+> Boolean initializeCatalogue( )
+
+* **Compatibility** : **TestComplete** + **NodeJS**
+
+This method create a brand new catalogue file.
+To be functional, you have to define first
+the catalogue file location thanks to the method ``setUserCatalogueLocation``.
+
+````javascript
+UserMgr.setUserCatalogueLocation('S:/TC_DATA/Technical/User/catalogue.json').initializeCatalogue();
+````
+
+
+
+### Pick a user group session to perform connection ``getUserSessionGroup``
+
+> UserManager getUserSessionGroup( )
+
+* **Compatibility** : **TestComplete** only
+
+As long as you do not picked a user group session with this method,
+you can not consume perform any connection.
+
+This method will enrich dynamically the current instance ``UserMgr``.
+
+If the library is not able to pick a user group session,
+an error message is raised in the interpreter stdout and an internal
+flag is set to ``true``.
+
+
+
+### Dynamic method named with the credential system name ``systemUser()``
+
+> Object systemUser( )
+
+* **Compatibility** : **TestComplete** only
+
+Considering ``saplogon`` is one of our registered credential system,
+to access to its data from picked user group session,
+we have to call method with its name.
+
+````javascript
+let oSaplogon = UserMgr.saplogon();
+````
+
+Before that method ``saplogon()`` exists, you have to call method
+``getUserSessionGroup()``.
+
+
+#### Get user name ``.user()``
+
+> String user( )
+
+To retrieve the user name set for the credential system in picked user group
+session, simply use method ``user()``
+
+````javascript
+let sUser = oSaplogon.user();
+````
+
+You can chain all method from the instance 
+
+````javascript
+let sUser = UserMgr.saplogon().user();
+````
+
+
+
+#### Get user password ``.password()``
+
+> String password( )
+
+To retrieve the decrypt user password set for the credential system in picked user group
+session, simply use method ``password()``
+
+````javascript
+let sPassword = oSaplogon.password();
+````
+
+You can chain all method from the instance 
+
+````javascript
+let sPassword = UserMgr.saplogon().password();
+````
+
+
+
+#### Set signed flag ``.signed()``
+
+> Void signed( )
+
+The library is not able to know when a connection has been performed.
+You have to flag the information :
+
+````javascript
+// Indicating that connection has been performed :
+UserMgr.saplogon().signed().on();
+````
+
+The library is not also able to know when a disconnection has been performed.
+You have to flag the information :
+
+````javascript
+// Indicating that disconnection has ben performed
+UserMgr.saplogon().signed().off();
+````
+
+
+
+#### Get signed flag ``.isSigned()``
+
+> Boolean isSigned( )
+
+As you can manage a flag which indicates if a connection is up on 
+the credential system, you can easily check at any time the status.
+If usefull to handle disconnection next to an event :
+
+````javascript
+if(UserMgr.saplogon().isSigned()){
+    // --> Disconnection
+}
+````
+
+
+
+#### Get credential system global setting ``<credSystemProperty>``
+
+> Mixed <credSystemProperty>
+
+In the setup phase of the catalogue file,
+it's possible to define global setting for the credential system.
+
+These settings can be access simply by calling the property :
+
+````javascript
+let sSystem = UserMgr.saplongon().system;
+let nClient = UserMgr.saplongon().client;
+let sLang   = UserMgr.saplongon().language;
+````
+
+
+
+
+
+
+### Release picked user group session ``releaseUserSessionGroup()``
+
+> UserMgr releaseUserSessionGroup( )
+
+* **Compatibility** : **TestComplete** only
+
+As the library put a lock file when a user group session is picked,
+the presence of the file prevent other execution to pick the same session.
+
+So before ending your test execution, you have to perform post execution
+which consists in releasing the user group session (and it lock file)
+
+Simply call this method before closing test execution :
+
+````javascript
+UserMgr.releaseUserSessionGroup();
+````
