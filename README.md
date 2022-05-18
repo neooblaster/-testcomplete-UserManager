@@ -10,12 +10,12 @@
         * ``./node_modules/sjcl/sjcl.js``
     * ``Base64`` : Provided in the package
         * ``./Base64.js``
-    * ``LockManager`` : [@testcomplete/lockmanager](https://www.npmjs.com/package/%40testcomplete%2Flockmanager)
+    * ``LockManager`` : [TestComplete/Core/LockManager](https://gitlab.viseo.com/testcomplete/core/lockmanager)
         * ``./node_modules/@testcomplete/lockmanager/LockManager.js``
         * ``LockManager`` dependencies
-    * ``LoggerUtil`` : [@testcomplete/loggerutil](https://www.npmjs.com/package/%40testcomplete%2Floggerutil)
+    * ``LoggerUtil`` : [TestComplete/Core/LoggerUtil](https://gitlab.viseo.com/testcomplete/core/loggerutil)
         * ``./node_modules/@testcomplete/loggerutil/LoggerUtil.js``
-    * ``Sleep`` : [@testcomplete/sleep](https://www.npmjs.com/package/%40testcomplete%2Fsleep)
+    * ``Sleep`` : [TestComplete/Library/Sleep](https://gitlab.viseo.com/testcomplete/library/sleep)
         * ``./node_modules/@testcomplete/sleep/Sleep.js``
   
   
@@ -93,7 +93,7 @@ Script List for the setup :
 * ``./node_modules/@testcomplete/usermanager/Base64.js`` (From Package)
 * ``./node_modules/@testcomplete/usermanager/UserManager.js`` (From Package)
 
-[@testcomplete/testcompletelibrarysetup](https://www.npmjs.com/package/@testcomplete/testcompletelibrarysetup)
+[TestComplete Library Setup](https://gitlab.viseo.com/testcomplete/documentations/testcompletelibrarysetup)
 
 
 
