@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{24B6FA0B-0143-461A-9758-AEB9E9A9428B}" version="15.0" key="{08675D88-4B3D-4AA2-B619-4AB4EA0A6F9C}">
+	<children>
+		<child name="UserManagerTest" key="{A824D5E4-53CE-4FC3-985B-8D9E13F09499}" path="UserManagerTest\UserManagerTest.mds" />
+	</children>
+	<testItems key="{DA6C9B6C-A827-4477-A8DE-DCB8DA4FCB8E}">
+		<children>
+			<testItem key="{A824D5E4-53CE-4FC3-985B-8D9E13F09499}" enabled="True" timeout="0" stopOnError="True" description="" />
+		</children>
+	</testItems>
+	<variables key="{2C858F47-A38A-4797-8370-ED2B8D7A03D3}">
+		<data Version="4">
+			<Items>
+				<Variable Name="sUsers" Type="String" Local="True">
+					<DefValue />
+				</Variable>
+			</Items>
+		</data>
+	</variables>
+	<analysis key="{DE09A538-B060-4976-B556-7053B4A7B52B}" />
+	<scc key="{00000000-0000-0000-0000-000000000000}" name="">
+		<data />
+	</scc>
+</Root>

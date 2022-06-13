@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<folder name="Library">
+			<child name="Base64" key="{F7941E22-1F90-4E2B-8B06-64F8536C9876}" path="..\..\..\Base64.js" />
+			<child name="UserManager" key="{6F6B675E-A57F-43D9-BCDD-745A188FF0CF}" path="..\..\..\UserManager.js" />
+			<child name="sjcl" key="{80AEF784-12A4-424B-A565-E90B92DED2B7}" path="..\..\Scripts\node_modules\sjcl\sjcl.js" />
+			<child name="FileSystemUtil" key="{377FCB23-64BD-409E-8DBE-327576DA9F96}" path="..\..\Scripts\node_modules\@testcomplete\filesystemutil\FileSystemUtil.js" />
+			<child name="LockManager" key="{86C7DD30-202A-4B36-8F12-014BCB74B8A5}" path="..\..\Scripts\node_modules\@testcomplete\lockmanager\LockManager.js" />
+			<child name="LoggerUtil" key="{60A4442D-D261-466C-B98E-A6DB1B477E90}" path="..\..\Scripts\node_modules\@testcomplete\loggerutil\LoggerUtil.js" />
+			<child name="Sleep" key="{CF57C555-3D5A-4A12-89FF-F1CB440FED0A}" path="..\..\Scripts\node_modules\@testcomplete\sleep\Sleep.js" />
+		</folder>
+		<folder name="Scripts">
+			<child name="logon" key="{99021E10-FC8A-4959-A57A-F8EFB24C093A}" path="logon.js" />
+			<child name="release" key="{B16D431D-861F-443E-BDAC-B528C6E34683}" path="release.js" />
+		</folder>
+	</children>
+</Root>

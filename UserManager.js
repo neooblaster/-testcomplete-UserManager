@@ -10,7 +10,7 @@ let lockManager = require(`${sPrePath}LockManager`);
 
 
 /**
- * Version v0.3.1
+ * Version v0.3.2
  *
  * @author: Nicolas DUPRE (VISEO)
  *
@@ -485,8 +485,8 @@ function UserManager() {
             // self.fs().write(sSessionGroupLockFile);
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-            self._lockManager.setLockName(self._oUsers.runId, sSessionGroup);
-            self._lockManager.setLockName(sSessionGroup);
+            self._lockManager.setLockName(self._oUsers.runId).lock(null, sSessionGroup);
+            self._lockManager.setLockName(sSessionGroup).lock(null, self._oUsers.runId);
 
             self.logger().message(`Current execution (Lock '${self._oUsers.runId}') use session group '${sSessionGroup}'.`);
             

@@ -2,7 +2,7 @@
 
 > A library that pick a credentials group session from a catalogue for a testing execution.
 
-* **Version** : ``v0.3.1``
+* **Version** : ``v0.3.2``
 * **Compatibility** : **TestComplete** - **NodeJS** (Partial)
 * **Script** : ``./node_modules/@testcomplete/usermanager/UserManager.js``
 * **Dependencies** :
@@ -10,13 +10,14 @@
         * ``./node_modules/sjcl/sjcl.js``
     * ``Base64`` : Provided in the package
         * ``./Base64.js``
-    * ``LockManager`` : [TestComplete/Core/LockManager](https://gitlab.viseo.com/testcomplete/core/lockmanager)
+    * ``LockManager`` : [@testcomplete/lockmanager](https://www.npmjs.com/package/%40testcomplete%2Flockmanager)
         * ``./node_modules/@testcomplete/lockmanager/LockManager.js``
         * ``LockManager`` dependencies
-    * ``LoggerUtil`` : [TestComplete/Core/LoggerUtil](https://gitlab.viseo.com/testcomplete/core/loggerutil)
+    * ``LoggerUtil`` : [@testcomplete/loggerutil](https://www.npmjs.com/package/%40testcomplete%2Floggerutil)
         * ``./node_modules/@testcomplete/loggerutil/LoggerUtil.js``
-    * ``Sleep`` : [TestComplete/Library/Sleep](https://gitlab.viseo.com/testcomplete/library/sleep)
+    * ``Sleep`` : [@testcomplete/sleep](https://www.npmjs.com/package/%40testcomplete%2Fsleep)
         * ``./node_modules/@testcomplete/sleep/Sleep.js``
+* **Test Project** : ``./test/UserManagerTest.pjs``
   
   
 ## Summary
@@ -93,7 +94,7 @@ Script List for the setup :
 * ``./node_modules/@testcomplete/usermanager/Base64.js`` (From Package)
 * ``./node_modules/@testcomplete/usermanager/UserManager.js`` (From Package)
 
-[TestComplete Library Setup](https://gitlab.viseo.com/testcomplete/documentations/testcompletelibrarysetup)
+[@testcomplete/testcompletelibrarysetup](https://www.npmjs.com/package/@testcomplete/testcompletelibrarysetup)
 
 
 

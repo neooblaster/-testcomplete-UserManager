@@ -5,7 +5,7 @@
  *
  * @author:  Nicolas DUPRE
  * @relase:  03/11/2021
- * @version: v0.3.0
+ * @version: v0.3.2
  *
  *
  *
